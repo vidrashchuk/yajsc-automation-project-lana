@@ -10,6 +10,8 @@ export class AccountPage {
     this.page = page;
     this.header = new HeaderFragment(page);
 
-    this.pageHeading = page.getByTestId('page-title');
+    this.pageHeading = page.getByRole('heading', {
+      name: 'My account',
+    });
   }
 }
