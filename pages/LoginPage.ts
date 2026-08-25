@@ -12,14 +12,14 @@ export class LoginPage {
     this.page = page;
     this.header = new HeaderFragment(page);
 
-    this.emailInput = page.getByLabel('Email');
+    this.emailInput = page.getByTestId('email');
     this.passwordInput = page.getByTestId('password');
-    this.loginButton = page.getByRole('button', { name: 'Login' });
+    this.loginButton = page.getByTestId('login-submit');
   }
 
   async open(): Promise<void> {
-  await this.page.goto('/auth/login');
-}
+    await this.page.goto('/auth/login');
+  }
 
   async login(email: string, password: string): Promise<void> {
     await this.emailInput.fill(email);
