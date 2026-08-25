@@ -13,17 +13,17 @@ export class HomePage {
     this.page = page;
     this.header = new HeaderFragment(page);
 
-    this.productName = page.locator('[data-test="product-name"]');
-    this.productPrice = page.locator('[data-test="unit-price"]');
-    this.addToCartButton = page.locator('[data-test="add-to-cart"]');
-    this.addToFavoritesButton = page.locator(
-      '[data-test="add-to-favorites"]'
+    this.productName = page.getByTestId('product-name');
+    this.productPrice = page.getByTestId('unit-price');
+    this.addToCartButton = page.getByTestId('add-to-cart');
+    this.addToFavoritesButton = page.getByTestId(
+      'add-to-favorites'
     );
   }
 
   async open(): Promise<void> {
-    await this.page.goto('https://practicesoftwaretesting.com');
-  }
+  await this.page.goto('/');
+}
 
   async openProduct(productName: string): Promise<void> {
     await this.page.getByText(productName, { exact: true }).click();
