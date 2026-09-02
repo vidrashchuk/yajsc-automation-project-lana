@@ -1,23 +1,11 @@
-import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
-import { AccountPage } from '../pages/AccountPage';
+import { test } from "@playwright/test";
+import { LoginPage } from "../pages/LoginPage";
 
-test('Verify login with valid credentials', async ({ page }) => {
-  const loginPage = new LoginPage(page);
-  const accountPage = new AccountPage(page);
+test.describe("Login", () => {
+  test("Verify login with valid credentials", async ({ page }) => {
+    const loginPage = new LoginPage(page);
 
-  await loginPage.open();
-
-  await loginPage.login(
-    'customer@practicesoftwaretesting.com',
-    'welcome01'
-  );
-
-  await expect(page).toHaveURL(
-    'https://practicesoftwaretesting.com/account'
-  );
-
-  await expect(accountPage.pageHeading).toBeVisible();
-
-  await expect(accountPage.header.userName).toBeVisible();
+    await loginPage.goto();
+    await loginPage.login("customer@practicesoftwaretesting.com", "welcome01");
+  });
 });

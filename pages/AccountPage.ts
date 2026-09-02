@@ -1,17 +1,19 @@
-import { Locator, Page } from '@playwright/test';
-import { HeaderFragment } from './fragments/HeaderFragment';
+import { Page, Locator, expect } from "@playwright/test";
 
 export class AccountPage {
   readonly page: Page;
-  readonly header: HeaderFragment;
-  readonly pageHeading: Locator;
+  readonly heading: Locator;
+  readonly userName: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.header = new HeaderFragment(page);
+    this.heading = page.getByRole("heading", { name: "My account" });
+    this.userName = page.getByText("Test");
+  }
 
-    this.pageHeading = page.getByRole('heading', {
-      name: 'My account',
-    });
+  async expectLoaded(): Promise<void> {
+    await expect(this.page).toHaveURL("/account");
+    await expect(this.heading).toBeVisible();
+    await expect(this.userName).toBeVisible();
   }
 }

@@ -1,31 +1,25 @@
-import { Locator, Page } from '@playwright/test';
-import { HeaderFragment } from './fragments/HeaderFragment';
+import { Page, Locator } from "@playwright/test";
 
 export class HomePage {
   readonly page: Page;
-  readonly header: HeaderFragment;
-  readonly productName: Locator;
-  readonly productPrice: Locator;
-  readonly addToCartButton: Locator;
-  readonly addToFavoritesButton: Locator;
+  readonly signInLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.header = new HeaderFragment(page);
-
-    this.productName = page.getByTestId('product-name');
-    this.productPrice = page.getByTestId('unit-price');
-    this.addToCartButton = page.getByTestId('add-to-cart');
-    this.addToFavoritesButton = page.getByTestId(
-      'add-to-favorites'
-    );
+    this.signInLink = page.getByRole("link", { name: "Sign in" });
   }
 
-  async open(): Promise<void> {
-  await this.page.goto('/');
-}
+  async goto(): Promise<void> {
+    await this.page.goto("/", {
+      waitUntil: "domcontentloaded",
+    });
+  }
 
-  async openProduct(productName: string): Promise<void> {
+  async goToLogin(): Promise<void> {
+    await this.signInLink.click();
+  }
+
+  async selectProduct(productName: string): Promise<void> {
     await this.page.getByText(productName, { exact: true }).click();
   }
 }

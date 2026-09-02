@@ -1,24 +1,20 @@
-import { Locator, Page } from '@playwright/test';
-import { HeaderFragment } from './fragments/HeaderFragment';
+import { Page, Locator } from "@playwright/test";
 
 export class LoginPage {
   readonly page: Page;
-  readonly header: HeaderFragment;
   readonly emailInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.header = new HeaderFragment(page);
-
-    this.emailInput = page.getByTestId('email');
-    this.passwordInput = page.getByTestId('password');
-    this.loginButton = page.getByTestId('login-submit');
+    this.emailInput = page.locator("#email");
+    this.passwordInput = page.locator("#password");
+    this.loginButton = page.getByRole("button", { name: "Login" });
   }
 
-  async open(): Promise<void> {
-    await this.page.goto('/auth/login');
+  async goto(): Promise<void> {
+    await this.page.goto("/auth/login");
   }
 
   async login(email: string, password: string): Promise<void> {
