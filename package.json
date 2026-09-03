@@ -1,0 +1,34 @@
+{
+  "name": "yajsc-automation-project-lana",
+  "version": "1.0.0",
+  "description": "yajsc course automation project using playwright",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx playwright test",
+    "ui:mode": "npx playwright test --ui",
+    "codegen": "npx playwright codegen",
+    "report": "npx playwright show-report",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vidrashchuk/yajsc-automation-project-lana.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/vidrashchuk/yajsc-automation-project-lana/issues"
+  },
+  "homepage": "https://github.com/vidrashchuk/yajsc-automation-project-lana#readme",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@types/node": "^26.2.0",
+    "eslint": "^10.8.1",
+    "eslint-plugin-playwright": "^2.11.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.67.0"
+  }
+}
